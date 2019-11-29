@@ -1,0 +1,96 @@
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
+
+# some more ls aliases
+alias hg='history | grep '
+alias downloads='cd ~/Downloads'
+alias gaac='git add -A; git commit -m'
+alias gp='git push'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias aget='sudo apt-get install'
+alias pget='sudo pip install'
+alias nget='sudo npm install'
+alias aupdate='sudo apt-get update'
+alias montest='ansible-playbook ~/Desktop/repos/Monitoring/runqquest.yml -u root'
+alias monloctest='ansible-playbook ~/Desktop/repos/Monitoring/runlocal.yml -u root'
+alias doclear='sudo docker stop $(sudo docker ps -a -q);sudo docker rm $(sudo docker ps -a -q)'
+alias gobuster='/home/lennart/gobuster/gobuster'
+alias htb='cd /home/lennart/Desktop/Dev/HTB'
+alias smbmap='python /home/lennart/Desktop/Dev/tools/smbmap/smbmap.py'
+alias rsatool='python /home/lennart/Desktop/Dev/tools/RsaCtfTool/RsaCtfTool.py'
+alias repos='cd /home/lennart/Desktop/repos/'
+alias stopdeaidsmuis='sudo bash /home/lennart/Desktop/muisdoetstom.sh'
+alias tools='cd /home/lennart/Desktop/Dev/tools'
+alias words='cd /home/lennart/Desktop/Dev/wordlists'
+alias tomcat='sudo $CATALINA_HOME/bin/startup.sh'
+alias tomkill='sudo $CATALINA_HOME/bin/shutdown.sh'
+alias bashrc="vi ~/.bashrc && source ~/.bashrc"
+alias serve="python -m SimpleHTTPServer"
+alias padbuster='perl /home/lennart/Desktop/Dev/tools/PadBuster/padBuster.pl'
+alias gobust='/home/lennart/gobuster/gobuster -w /home/lennart/Desktop/Dev/wordlists/directory-list-lowercase-2.3-small.txt -x "html,php" -u '
+alias htbip='ifconfig | grep -C 10 tun | grep "inet addr:10"'
+alias newvenv='python -m venv .'
+alias workoff='deactivate'
+alias mysql='sudo docker stop mysql && sudo docker rm mysql && sudo docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=toor -v /data/djangoapp:/var/lib/mysql -d mysql:latest'
+alias manage='python manage.py'
+
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+alias stego='sudo docker run -it --rm -v $(pwd):/data dominicbreuker/stego-toolkit /bin/bash'
+
+
+function fn() {
+  
+  find / -name $1 2>/dev/null
+
+}
+
+
+function dirgo() {
+  mkdir $1 && cd $1
+}
+
+function workon() {
+
+  cd "/home/lennart/Desktop/Dev/$1" && source bin/activate
+
+}
+
+
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
+if [ -x /usr/bin/mint-fortune ]; then
+     /usr/bin/mint-fortune
+fi
+
+PATH="/home/lennart/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/lennart/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/lennart/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/lennart/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/lennart/perl5"; export PERL_MM_OPT;
+
+export NVM_DIR="/home/lennart/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

@@ -1,0 +1,7 @@
+- src: geerlingguy.nodejs
+- src: geerlingguy.pip
+- src: geerlingguy.docker
+- src: lean_delivery.java
+- src: gantsign.intellij
+- src: gantsign.maven
+- src: gantsign.visual-studio-code

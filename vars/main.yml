@@ -1,0 +1,4 @@
+nodejs_npm_global_packages:
+  - name: tldr
+
+nodejs_version: "9.x"

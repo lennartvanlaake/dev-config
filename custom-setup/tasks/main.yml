@@ -1,0 +1,66 @@
+---
+
+# Add specified repository into sources list.
+- name: add repo for ddgr
+  apt_repository:
+    codename: xenial
+    repo: ppa:twodopeshaggy/jarun
+    state: present
+
+- name: Install a list of apt packages
+  apt:
+    update_cache: yes
+    pkg:
+    - tig
+    - httpie
+    - vim
+    - docker.io
+    - ddgr
+    - lynx
+    - htop
+    - silversearcher-ag
+    - fish
+
+- name: Copy vimrc
+  copy:
+    src: vimrc
+    dest: ~/.vimrc
+  become: yes
+  become_user: lennart
+
+- name: Create repos directory
+  file:
+    path: ~/repos
+    owner: lennart
+    mode: '0755'
+    state: directory
+  become: yes
+  become_user: lennart
+
+- name: Creates fish config directory
+  file:
+    path: ~/.config/fish/functions
+    state: directory
+    owner: lennart
+    mode: 0775
+    recurse: yes
+  become: yes
+  become_user: lennart
+
+- name: Copy fish config
+  copy:
+    src: "{{ item }}"
+    dest: ~/.config/fish/functions
+    owner: lennart
+    mode: 0775
+  with_fileglob:
+    - files/fish-functions/*
+  become: yes
+  become_user: lennart
+
+# Generate an OpenSSH keypair with the default values (4096 bits, rsa)
+- name: Generate ssh keys
+  openssh_keypair:
+    path: ~/.ssh/id_rsa
+  become: yes
+  become_user: lennart
