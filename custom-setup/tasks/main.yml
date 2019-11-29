@@ -11,6 +11,10 @@
   apt:
     update_cache: yes
     pkg:
+    - pass
+    - tree
+    - terminator
+    - sudo
     - tig
     - httpie
     - vim
